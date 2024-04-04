@@ -8,7 +8,7 @@ import java.util.List;
 public abstract class BasePage {
 
     protected final By flashMessage = By.id("flash");
-    protected final By pageTitle = By.tagName("h2");
+    protected final By pageTitle = By.cssSelector("h2, h3");
     protected final By pageDescription = By.className("subheader");
 
     protected WebElement find(By locator) {

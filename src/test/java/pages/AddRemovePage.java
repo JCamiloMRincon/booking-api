@@ -8,7 +8,6 @@ import utilities.Logs;
 
 public class AddRemovePage extends BasePage {
 
-    private final By addRemovePageTitle = By.tagName("h3");
     private final By buttonAddElement = By.xpath("//button[text()='Add Element']");
     private final By buttonDelete = By.xpath("//button[text()='Delete']");
 
@@ -16,8 +15,8 @@ public class AddRemovePage extends BasePage {
     public void verifyPage() {
         Logs.info("Verifying the add/remove page...");
         final var softAssert = new SoftAssert();
-        softAssert.assertTrue(find(addRemovePageTitle).isDisplayed());
-        softAssert.assertEquals(find(addRemovePageTitle).getText(), "Add/Remove Elements");
+        softAssert.assertTrue(find(pageTitle).isDisplayed());
+        softAssert.assertEquals(find(pageTitle).getText(), "Add/Remove Elements");
         softAssert.assertTrue(find(buttonAddElement).isDisplayed());
         softAssert.assertEquals(find(buttonAddElement).getText(), "Add Element");
         softAssert.assertTrue(find(buttonAddElement).isEnabled());

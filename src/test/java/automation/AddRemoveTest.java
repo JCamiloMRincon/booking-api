@@ -1,6 +1,8 @@
 package automation;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.AddRemovePage;
 import utilities.BaseTest;
@@ -9,6 +11,12 @@ import utilities.Logs;
 public class AddRemoveTest extends BaseTest {
 
     private final AddRemovePage addRemovePage = new AddRemovePage();
+    @DataProvider(name = "number-of-clicks-data")
+    public static Object[][] createData() {
+        return new Object[][] {
+                { 1 }, { 5 }, { 25 }
+        };
+    }
 
     @BeforeMethod
     public void setUp() {
@@ -21,10 +29,10 @@ public class AddRemoveTest extends BaseTest {
         addRemovePage.verifyPage();
     }
 
-    @Test(priority = 2)
-    public void clickAddElementAndDeleteTest() {
-        addRemovePage.clickAddElement(25);
-        addRemovePage.verifyDeleteButtons(25);
+    @Test(priority = 2, dataProvider = "number-of-clicks-data")
+    public void clickAddElementAndDeleteTest(int clicksCount) {
+        addRemovePage.clickAddElement(clicksCount);
+        addRemovePage.verifyDeleteButtons(clicksCount);
         addRemovePage.clickDeleteElement();
         addRemovePage.verifyDeleteButtons(0);
     }
