@@ -18,12 +18,12 @@ public class LoginTest extends BaseTest {
         driver.get("https://the-internet.herokuapp.com/login");
     }
 
-    @Test
+    @Test(priority = 1)
     public void verifyLoginPageTest() {
         loginPage.verifyPage();
     }
 
-    @Test
+    @Test(priority = 2)
     public void successfulLoginTest() {
         loginPage.writeCredentials("tomsmith", "SuperSecretPassword!");
         secureAreaPage.verifyPage();
@@ -31,7 +31,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyLogoutMessage();
     }
 
-    @Test
+    @Test(priority = 3)
     public void failLoginTest() {
         loginPage.writeCredentials("camilo", "NotASecretPassword");
         loginPage.verifyFailedLoginMessage();
